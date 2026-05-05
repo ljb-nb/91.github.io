@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>91网站</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{
+            background:#000;
+            color:#fff;
+            overflow:hidden;
+        }
+        /*页面中间大字飘过*/
+        .float-title{
+            position:fixed;
+            top:50%;
+            transform:translateY(-50%);
+            font-size:80px;
+            font-weight:bold;
+            color:#00ffff;
+            left:-300px;
+            animation:fly 6s linear forwards;
+            z-index:10;
+        }
+        @keyframes fly{
+            0%{left:-300px;}
+            100%{left:100vw;}
+        }
+        .warn{
+            position:absolute;
+            top:50%;
+            left:50%;
+            transform:translate(-50%,-50%);
+            font-size:10px;
+            color:red;
+            font-weight:bold;
+            opacity:1;
+            animation:warnAnime 4s forwards;
+            display:none;
+            z-index:20;
+        }
+        @keyframes warnAnime{
+            0%{font-size:10px;opacity:1;}
+            100%{font-size:130px;opacity:0;}
+        }
+        .btn-box{
+            position:absolute;
+            top:60%;
+            left:50%;
+            transform:translate(-50%,-50%);
+            display:none;
+            gap:30px;
+            flex-direction:column;
+            z-index:30;
+        }
+        .btn-box button{
+            width:220px;
+            height:60px;
+            background:#111;
+            border:2px solid #00ffff;
+            color:#00ffff;
+            font-size:18px;
+            cursor:pointer;
+            border-radius:8px;
+        }
+        .pop{
+            position:fixed;
+            width:100vw;
+            height:100vh;
+            background:rgba(0,0,0,0.95);
+            display:none;
+            align-items:center;
+            justify-content:center;
+            flex-direction:column;
+            z-index:999;
+        }
+        .pop input{
+            width:260px;
+            height:45px;
+            background:#222;
+            border:1px solid #00ffff;
+            color:#fff;
+            text-align:center;
+            font-size:18px;
+            margin:15px 0;
+        }
+        .pop button{
+            width:120px;
+            height:40px;
+            background:#00ffff;
+            border:none;
+            color:#000;
+            font-weight:bold;
+            cursor:pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="float-title" id="fly">91网站</div>
+
+    <div class="pop" id="pop">
+        <h2>91注入｜请输入卡密</h2>
+        <input type="text" id="pwd" placeholder="输入卡密">
+        <button onclick="checkPwd()">确认进入</button>
+    </div>
+
+    <div class="warn" id="warn">警告！</div>
+    <div class="btn-box" id="btnBox">
+        <button>和平精英</button>
+        <button>无畏契约</button>
+    </div>
+
+    <script>
+        setTimeout(()=>{
+            document.getElementById('pop').style.display='flex';
+        },6000);
+
+        function checkPwd(){
+            let val = document.getElementById('pwd').value;
+            if(val === "91A"){
+                document.getElementById('pop').style.display = 'none';
+                let w = document.getElementById('warn');
+                w.style.display = 'block';
+                setTimeout(()=>{
+                    document.getElementById('btnBox').style.display = 'flex';
+                },4000)
+            }else{
+                alert('卡密错误');
+            }
+        }
+    </script>
+</body>
+</html>
